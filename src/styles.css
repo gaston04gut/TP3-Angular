@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100%;
+  width: 100%;
+  background-color: #444444;
+  color: #ffffff;
+}
+
+.container-flex {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #444444;
+}
+
+app-root {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #444444;
+}
+
+.d-flex {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #444444;
+}
