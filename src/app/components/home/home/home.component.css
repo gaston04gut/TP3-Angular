@@ -1,3 +1,10 @@
+h2{
+  color: white;
+  text-shadow: blueviolet 0 2px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 39px;
+}
 .btn {
   background-color: blueviolet;
   border-color: black;

@@ -18,14 +18,20 @@ export class HomeService {
         titulo: 'Ejercicio 2',
         descripcion: 'Seccion Productos',
         ruta: '/ejercicio2',
-        imagen: 'https://via.placeholder.com/150',
+        imagen: 'assets/img/eje2SM.png',
       },
       {
         titulo: 'Ejercicio 3',
         descripcion: 'Seccion Ahorcadito',
         ruta: '/ejercicio3',
-        imagen: 'https://via.placeholder.com/150',
+        imagen: 'assets/img/eje3.png',
       },
+      {
+        titulo: 'Ejercicio 4',
+        descripcion: 'Seccion Pokedex',
+        ruta: '/ejercicio4',
+        imagen: 'assets/img/eje4.png',
+      }
     ];
   }
   getHomes() {

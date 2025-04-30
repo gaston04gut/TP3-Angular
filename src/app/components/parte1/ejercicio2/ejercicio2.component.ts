@@ -31,6 +31,10 @@ export class Ejercicio2Component {
     this.lista = this.carritoService.getLista();
   }
 
+  getContador(): number {
+    return this.carritoService.getContador();
+  }
+
   getTotal(): number {
     return this.carritoService.getTotal();
   }

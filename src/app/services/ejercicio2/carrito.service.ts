@@ -7,11 +7,17 @@ import { Ejercicio2Service } from './ejercicio2.service';
 })
 export class CarritoService {
 lista: Array<CarritoModel> = [];
+private contador: number = 0;
 
+  //constructor con parametro ejercicio2service para poder usar su metod
   constructor(private ejercicio2Service: Ejercicio2Service) { }//constructor vacio
 
   getLista(): Array<CarritoModel> {
     return this.lista;
+  }
+
+  getContador(): number {
+    return this.lista.reduce((total, item) => total + item.cantidad, 0);
   }
 
   agregarAlCarrito(id: string): void {
@@ -30,11 +36,13 @@ lista: Array<CarritoModel> = [];
           total: producto.precio
         };
         this.lista.push(nuevoItem);
+        
       }
     }
+    this.contador = this.getContador();
   }
 
   getTotal(): number {
-    return this.lista.reduce((total, item) => total + item.total, 0);
+    return Number(this.lista.reduce((total, item) => total + item.total, 0).toFixed(2));
   }
 }

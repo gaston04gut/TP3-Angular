@@ -3,29 +3,74 @@
   <div class="container mt-4">
     <div class="d-flex justify-content-end mb-3">
       <div class="dropdown">
-        <i
-          class="bi bi-cart3"
-          id="carrito"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        ></i>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="carrito">
-          <h6 class="dropdown-header">Carrito de Compras</h6>
-          <div *ngFor="let producto of lista" class="dropdown-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <span>{{ producto.producto }}</span>
-              <span class="badge bg-primary rounded-pill">{{
-                producto.cantidad
-              }}</span>
-              <span>${{ producto.precio }}</span>
-            </div>
-          </div>
-          <div class="dropdown-divider"></div>
-          <div class="dropdown-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <strong>Total:</strong>
-              <span class="text-success">${{ getTotal() }}</span>
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#carritoModal"
+        >
+          <i
+            class="bi bi-cart3"
+            id="carrito"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></i>
+          <span id="contador">{{ getContador() }}</span>
+        </button>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="carritoModal"
+          tabindex="-1"
+          aria-labelledby="carritoModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="carritoModalLabel">
+                  Carrito de Compras
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div *ngFor="let producto of lista" class="dropdown-item">
+                  <div
+                    class="infor d-flex justify-content-between align-items-center"
+                  >
+                    <span>{{ producto.producto }}</span>
+                    <span class="badge rounded-pill">{{
+                      producto.cantidad
+                    }}</span>
+                    <span>${{ producto.precio }}</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item">
+                  <div
+                    class="infor d-flex justify-content-between align-items-center"
+                  >
+                    <strong>Total:</strong>
+                    <span class="text-success">${{ getTotal() }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+                <button type="button" class="btn btn-success">Comprar</button>
+              </div>
             </div>
           </div>
         </div>
