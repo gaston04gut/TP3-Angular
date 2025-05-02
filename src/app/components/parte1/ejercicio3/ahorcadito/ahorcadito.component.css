@@ -1,0 +1,98 @@
+#volver {
+  text-align: end;
+}
+
+#volver a {
+  background-color: blueviolet;
+  color: white;
+  border-radius: 10px;
+  margin: 10px;
+  font-size: 22px;
+}
+#volver:hover a {
+  background-color: rgb(140, 88, 204);
+}
+
+.imagen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  min-width: 400px;
+  max-height: 500px;
+  object-fit: contain;
+}
+h3{
+  text-align: center;
+  font-size: 30px;
+  color:white
+}
+
+.letras-adivinadas{
+  text-align: center;
+  font-size: 40px;
+  color:white;
+}
+
+.btn-teclado {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+  background-color: #007bff;
+  color: white;
+}
+
+.letra-correcta {
+  background-color: #28a745 !important;
+  color: white;
+  opacity: 0.8;
+}
+
+.letra-errada {
+  background-color: #dc3545 !important;
+  color: white;
+  opacity: 0.8;
+}
+#letraErrada{
+  scale: 1.8!important;
+  justify-content: center!important;
+  align-items: center!important;
+  display: flex!important;
+  font-size: 16px!important;
+}
+
+.btn-teclado:disabled {
+  cursor: not-allowed;
+}
+
+.teclado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin: 20px 0;
+}
+.teclado button {
+  background-color:#8a8a8a;
+}
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  opacity: 0.8;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+  opacity: 0.8;
+}

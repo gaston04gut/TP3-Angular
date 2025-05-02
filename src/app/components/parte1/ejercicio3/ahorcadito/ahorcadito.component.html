@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <div class="row mb-3">
+    <div class="col" id="volver">
+      <a routerLink="/ejercicio3" routerLinkActive="active" class="btn">
+        Volver a Elegir Categoria
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Columna de la imagen -->
+    <div class="col-md-6" id="imagen">
+      <div class="imagen-container">
+        <img [src]="imagenUrl" class="img-fluid" />
+      </div>
+    </div>
+
+    <!-- Columna del juego -->
+    <div class="col-md-6">
+      <div class="mb-5">
+        <div class="categoria-juego">
+          <h3>
+            Categoria: <span> {{ categoria }}</span>
+          </h3>
+        </div>
+      </div>
+      <!-- Letras Adivinadas -->
+      <div class="mb-4" id="letrasAdivi">
+        <h3>Letras Adivinadas</h3>
+        <div class="letras-adivinadas">
+          <p>
+            <span *ngFor="let letra of palabraOculta">{{ letra }} </span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Teclado -->
+      <div class="mb-4">
+        <h3>Teclado</h3>
+        <div class="teclado">
+          <button
+            *ngFor="let letra of teclado"
+            (click)="verificarLetra(letra)"
+            [disabled]="
+              letrasAdivinadas.includes(letra) || letrasErradas.includes(letra)
+            "
+            [ngClass]="{
+              'letra-errada': letrasErradas.includes(letra),
+              'letra-correcta': letrasAdivinadas.includes(letra)
+            }"
+            class="btn-teclado m-1 badge"
+          >
+            {{ letra }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Letras Erradas -->
+      <div class="mb-4">
+        <h3>Letras Erradas</h3>
+        <div class="letras-erradas" id="letraErrada">
+          <span
+            *ngFor="let letra of letrasErradas"
+            class="badge bg-danger m-1"
+            >{{ letra }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Victoria -->
+<div
+  class="modal fade"
+  id="modalVictoria"
+  tabindex="-1"
+  aria-labelledby="modalVictoriaLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalVictoriaLabel">¡Felicitaciones!</h5>
+      </div>
+      <div class="modal-body">
+        ¡Has ganado! La palabra era: {{ palabraSeleccionada }}
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="reiniciarJuego()"
+        >
+          Jugar de nuevo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Derrota -->
+<div
+  class="modal fade"
+  id="modalDerrota"
+  tabindex="-1"
+  aria-labelledby="modalDerrotaLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDerrotaLabel">¡Game Over!</h5>
+      </div>
+      <div class="modal-body">
+        Has perdido. La palabra era: {{ palabraSeleccionada }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="reiniciarJuego()">
+          Intentar de nuevo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,7 +18,7 @@ export class HomeService {
         titulo: 'Ejercicio 2',
         descripcion: 'Seccion Productos',
         ruta: '/ejercicio2',
-        imagen: 'assets/img/eje2SM.png',
+        imagen: 'assets/img/eje2.png',
       },
       {
         titulo: 'Ejercicio 3',
