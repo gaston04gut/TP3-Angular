@@ -82,6 +82,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalVictoriaLabel">¡Felicitaciones!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         ¡Has ganado! La palabra era: {{ palabraSeleccionada }}
@@ -91,6 +92,7 @@
           type="button"
           class="btn btn-success"
           (click)="reiniciarJuego()"
+          data-bs-dismiss="modal"
         >
           Jugar de nuevo
         </button>
@@ -111,12 +113,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalDerrotaLabel">¡Game Over!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         Has perdido. La palabra era: {{ palabraSeleccionada }}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="reiniciarJuego()">
+        <button 
+          type="button" 
+          class="btn btn-danger" 
+          (click)="reiniciarJuego()"
+          data-bs-dismiss="modal"
+        >
           Intentar de nuevo
         </button>
       </div>
