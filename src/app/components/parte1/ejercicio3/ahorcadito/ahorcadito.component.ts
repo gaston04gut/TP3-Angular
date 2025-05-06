@@ -39,7 +39,7 @@ export class AhorcaditoComponent {
     'y',
     'z',
   ];
-categoria: string = '';
+  categoria: string = '';
   constructor(
     private ahorcaditoService: AhorcaditoService,
     private activatedRoute: ActivatedRoute,
@@ -48,7 +48,8 @@ categoria: string = '';
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      this.ahorcaditoService.iniciarJuego(params['categoria']);
+      //obtengo el parametro de la ruta
+      this.ahorcaditoService.iniciarJuego(params['categoria']); //inicio el juego
       this.categoria = params['categoria'];
     });
   }
@@ -57,7 +58,7 @@ categoria: string = '';
 
   verificarLetra(letra: string) {
     if (this.juegoTerminado) return;
-    
+
     const resultado = this.ahorcaditoService.verificarLetra(letra);
     if (resultado.estado === 'victoria') {
       this.juegoTerminado = true;

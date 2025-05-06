@@ -1,0 +1,104 @@
+.invalid-feedback {
+  display: block !important;
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: 0.25rem;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + 0.75rem);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: #198754;
+  padding-right: calc(1.5em + 0.75rem);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.input-group .form-control.is-invalid,
+.input-group .form-select.is-invalid {
+  z-index: 3;
+}
+.input-error {
+  border: 1.5px solid red;
+}
+.input-success {
+  border: 1.5px solid green;
+}
+.input {
+  border: none;
+}
+
+/* Estilos para la tabla Material */
+.mat-elevation-z8 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Estilos para el encabezado de la tabla */
+.mat-header-cell {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 16px !important;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Estilos para las celdas */
+.mat-cell {
+  padding: 16px !important;
+  color: #212529;
+  font-size: 14px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Hover en las filas */
+.mat-row:hover {
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos para el campo de filtro */
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Estilos para los botones de acción */
+.btn-danger {
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+/* Estilos para el contenedor de la tabla */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  border-bottom: none;
+  border-radius: 12px 12px 0 0 !important;
+  padding: 20px;
+}
+
+.card-body {
+  padding: 24px;
+}

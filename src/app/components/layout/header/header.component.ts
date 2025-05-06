@@ -29,7 +29,7 @@ ejercicios: Ejercicio[]=[
     nombre: 'Ejercicio 3'
   },
   {
-    ruta: '/ejercicio4',
+    ruta: '/ejercicio1-p2',
     nombre: 'Ejercicio 1 - Parte 2'
   }
 

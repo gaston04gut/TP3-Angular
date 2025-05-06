@@ -35,21 +35,20 @@ export class AhorcaditoService {
     return palabraAleatoria.split('');
   }
 
-  verificarLetra(letra: string): { estado: 'victoria' | 'derrota' | 'continuar' } {
-    if (this.letrasAdivinadas.includes(letra) || this.letrasErradas.includes(letra)) {
-      return { estado: 'continuar' };
-    }
-
+  verificarLetra(letra: string): {
+    estado: 'victoria' | 'derrota' | 'continuar';
+  } {
     if (this.palabraSeleccionadaArray.includes(letra)) {
       this.letrasAdivinadas.push(letra);
-      
+
       for (let i = 0; i < this.palabraSeleccionadaArray.length; i++) {
         if (this.palabraSeleccionadaArray[i] === letra) {
           this.palabraOculta[i] = letra;
         }
       }
-      
+
       if (this.palabraOculta.join('') === this.palabraSeleccionada) {
+        //si la palabra oculta es igual a la palabra seleccionada retorna victoria
         return { estado: 'victoria' };
       }
     } else {
@@ -58,7 +57,8 @@ export class AhorcaditoService {
         this.imagenUrl = '/assets/img/ahorcadito5.png';
         this.INTENTOS_MAXIMOS--;
       } else {
-        this.imagenUrl = '/assets/img/ahorcadito' + this.INTENTOS_MAXIMOS + '.png';
+        this.imagenUrl =
+          '/assets/img/ahorcadito' + this.INTENTOS_MAXIMOS + '.png';
         this.INTENTOS_MAXIMOS--;
         if (this.INTENTOS_MAXIMOS < 0) {
           this.imagenUrl = '/assets/img/ahorcadito0.png';

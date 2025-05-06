@@ -28,9 +28,9 @@ export class HomeService {
       },
       {
         titulo: 'Ejercicio 4',
-        descripcion: 'Seccion Pokedex',
-        ruta: '/ejercicio4',
-        imagen: 'assets/img/eje4.png',
+        descripcion: 'Seccion Pasajes',
+        ruta: '/ejercicio1-p2',
+        imagen: 'assets/img/eje1-p2.png',
       }
     ];
   }

@@ -1,0 +1,359 @@
+<app-header></app-header>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Registro de Boleto</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="boletoForm" (ngSubmit)="boletoSubmit()">
+            <!-- DNI -->
+            <div class="mb-3">
+              <label for="dni" class="form-label">DNI</label>
+              <input
+                type="text"
+                class="form-control"
+                id="dni"
+                formControlName="dni"
+                [ngClass]="getInputClass('dni')"
+                placeholder="Ingrese su DNI"
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  (boletoForm.controls['dni'].invalid &&
+                    boletoForm.controls['dni'].touched) ||
+                  boletoForm.controls['dni'].dirty
+                "
+              >
+                <span *ngIf="boletoForm.controls['dni'].errors?.['required']"
+                  >El DNI es requerido</span
+                >
+                <span *ngIf="boletoForm.controls['dni'].errors?.['minlength']"
+                  >Debe tener al menos 8 dígitos</span
+                >
+                <span *ngIf="boletoForm.controls['dni'].errors?.['pattern']"
+                  >Solo números permitidos</span
+                >
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                [ngClass]="getInputClass('email')"
+                placeholder="ejemplo@correo.com"
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  (boletoForm.controls['email'].invalid &&
+                    boletoForm.controls['email'].touched) ||
+                  boletoForm.controls['email'].dirty
+                "
+              >
+                <span *ngIf="boletoForm.controls['email'].errors?.['required']"
+                  >El email es requerido</span
+                >
+                <span *ngIf="boletoForm.controls['email'].errors?.['email']"
+                  >Formato de correo inválido</span
+                >
+              </div>
+            </div>
+
+            <!-- Categoría Turista -->
+            <div class="mb-3">
+              <label for="categoriaTurista" class="form-label"
+                >Categoría Turista</label
+              >
+              <select
+                class="form-select"
+                id="categoriaTurista"
+                formControlName="categoriaTurista"
+                [ngClass]="getInputClass('categoriaTurista')"
+              >
+                <option value="">Seleccione una categoría</option>
+                <option value="1">Menor</option>
+                <option value="2">Adulto</option>
+                <option value="3">Jubilado</option>
+              </select>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  (boletoForm.controls['categoriaTurista'].invalid &&
+                    boletoForm.controls['categoriaTurista'].touched) ||
+                  boletoForm.controls['categoriaTurista'].dirty
+                "
+              >
+                <span
+                  *ngIf="boletoForm.controls['categoriaTurista'].errors?.['required']"
+                  >Seleccione una categoría</span
+                >
+              </div>
+            </div>
+
+            <!-- Fecha de Compra -->
+            <div class="mb-3">
+              <label for="fechaCompra" class="form-label"
+                >Fecha de Compra</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="fechaCompra"
+                formControlName="fechaCompra"
+                [ngClass]="getInputClass('fechaCompra')"
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  (boletoForm.controls['fechaCompra'].invalid &&
+                    boletoForm.controls['fechaCompra'].touched) ||
+                  boletoForm.controls['fechaCompra'].dirty
+                "
+              >
+                <span
+                  *ngIf="boletoForm.controls['fechaCompra'].errors?.['required']"
+                  >La fecha es requerida</span
+                >
+              </div>
+            </div>
+
+            <!-- Precio -->
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="precio"
+                  formControlName="precio"
+                  [ngClass]="getInputClass('precio')"
+                  placeholder="0.00"
+                />
+              </div>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  (boletoForm.controls['precio'].invalid &&
+                    boletoForm.controls['precio'].touched) ||
+                  boletoForm.controls['precio'].dirty
+                "
+              >
+                <span *ngIf="boletoForm.controls['precio'].errors?.['required']"
+                  >El precio es requerido</span
+                >
+                <span *ngIf="boletoForm.controls['precio'].errors?.['min']"
+                  >El precio debe ser mayor a 0</span
+                >
+              </div>
+            </div>
+
+            <!-- Precio Calculado -->
+            <div class="alert alert-info" *ngIf="precioCalculado !== null">
+              <strong>Precio Total:</strong> {{ precioCalculado | currency }}
+            </div>
+
+            <!-- Botones -->
+            <div class="d-grid gap-2">
+              <button
+                type="submit"
+                class="btn btn-secondary"
+                [disabled]="!boletoForm.valid"
+                [ngClass]="{ 'btn-success': boletoForm.valid }"
+              >
+                <i class="bi bi-check-circle me-2"></i>Registrar Boleto
+              </button>
+            </div>
+
+            <!--Fin Formulario-->
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de Boletos Con Angular DataTable-->
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h3 class="mb-0">Lista de Boletos Registrados</h3>
+            </div>
+            <div class="card-body">
+              <!-- Filtro -->
+              <mat-form-field>
+                <mat-label>Filtrar</mat-label>
+                <input
+                  matInput
+                  (keyup)="aplicarFiltro($event)"
+                  placeholder="Buscar..."
+                  #input
+                />
+              </mat-form-field>
+
+              <!-- Tabla -->
+              <div class="mat-elevation-z8">
+                <!--Inicio de Tabla-->
+                <table mat-table [dataSource]="dataSource" matSort>
+                  <!-- DNI Column -->
+                  <ng-container matColumnDef="dni">
+                    <!--Coincide con displayedColumns-->
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      DNI
+                    </th>
+                    <td mat-cell *matCellDef="let row">{{ row.dni }}</td>
+                  </ng-container>
+
+                  <!-- Email Column -->
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Email
+                    </th>
+                    <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+                  </ng-container>
+
+                  <!-- Categoría Column -->
+                  <ng-container matColumnDef="categoriaTurista">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Categoría
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      {{
+                        row.categoriaTurista === "1"
+                          ? "Menor"
+                          : row.categoriaTurista === "2"
+                          ? "Adulto"
+                          : "Jubilado"
+                      }}
+                    </td>
+                  </ng-container>
+
+                  <!-- Fecha Column -->
+                  <ng-container matColumnDef="fechaCompra">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Fecha
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      {{ row.fechaCompra | date: 'dd/MM/yyyy' }}
+                    </td>
+                  </ng-container>
+
+                  <!-- Precio Base Column -->
+                  <ng-container matColumnDef="precio">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Precio Base
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      {{ row.precio | currency }}
+                    </td>
+                  </ng-container>
+
+                  <!-- Precio Final Column -->
+                  <ng-container matColumnDef="precioFinal">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                      Precio Final
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      {{ row.precioFinal | currency }}
+                    </td>
+                  </ng-container>
+
+                  <!--Acciones Column-->
+                  <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let row">
+                      <button
+                        class="btn btn-danger"
+                        type="button"
+                        (click)="eliminarBoleto(row)"
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                  ></tr>
+                </table>
+
+                <mat-paginator
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  aria-label="Seleccionar página"
+                  id="paginator"
+                ></mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen de Ventas -->
+    <div class="container mt-4 mb-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header bg-success text-white">
+              <h3 class="mb-0">Resumen de Ventas por Categoría</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body">
+                      <h5 class="card-title">Menores</h5>
+                      <p class="card-text">
+                        {{ resumenVentas.menores | currency }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body">
+                      <h5 class="card-title">Adultos</h5>
+                      <p class="card-text">
+                        {{ resumenVentas.adultos | currency }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body">
+                      <h5 class="card-title">Jubilados</h5>
+                      <p class="card-text">
+                        {{ resumenVentas.jubilados | currency }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-primary text-white">
+                    <div class="card-body">
+                      <h5 class="card-title">Total General</h5>
+                      <p class="card-text">
+                        {{ resumenVentas.total | currency }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
