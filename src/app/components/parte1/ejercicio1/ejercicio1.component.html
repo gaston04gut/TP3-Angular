@@ -1,4 +1,4 @@
-<div class="container-flex">
+<div class="container-fluid">
   <app-header></app-header>
   <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
     <div class="carousel-inner">
@@ -8,6 +8,12 @@
           <h5>{{ noticia.titulo }}</h5>
           <p>{{ noticia.contenido }}</p>
           <p id="fecha">{{ noticia.fecha }}</p>
+        </div>
+        <!-- Contenido para pantallas pequeñas -->
+        <div class="d-md-none bg-dark bg-opacity-75 p-3">
+          <h5 class="text-white">{{ noticia.titulo }}</h5>
+          <p class="text-white mb-2">{{ noticia.contenido }}</p>
+          <p class="text-white-50 mb-0" id="fecha">{{ noticia.fecha }}</p>
         </div>
       </div>
     </div>

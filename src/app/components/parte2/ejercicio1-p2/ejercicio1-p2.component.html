@@ -189,7 +189,7 @@
             </div>
             <div class="card-body">
               <!-- Filtro -->
-              <mat-form-field>
+              <mat-form-field class="w-100">
                 <mat-label>Filtrar</mat-label>
                 <input
                   matInput
@@ -200,98 +200,91 @@
               </mat-form-field>
 
               <!-- Tabla -->
-              <div class="mat-elevation-z8">
-                <!--Inicio de Tabla-->
-                <table mat-table [dataSource]="dataSource" matSort>
-                  <!-- DNI Column -->
-                  <ng-container matColumnDef="dni">
-                    <!--Coincide con displayedColumns-->
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                      DNI
-                    </th>
-                    <td mat-cell *matCellDef="let row">{{ row.dni }}</td>
-                  </ng-container>
+              <div class="table-container">
+                <div class="mat-elevation-z8">
+                  <div class="table-responsive">
+                    <table mat-table [dataSource]="dataSource" class="w-100">
+                      <!-- DNI Column -->
+                      <ng-container matColumnDef="dni">
+                        <th mat-header-cell *matHeaderCellDef>DNI</th>
+                        <td mat-cell *matCellDef="let row">{{ row.dni }}</td>
+                      </ng-container>
 
-                  <!-- Email Column -->
-                  <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Email
-                    </th>
-                    <td mat-cell *matCellDef="let row">{{ row.email }}</td>
-                  </ng-container>
+                      <!-- Email Column -->
+                      <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef>Email</th>
+                        <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+                      </ng-container>
 
-                  <!-- Categoría Column -->
-                  <ng-container matColumnDef="categoriaTurista">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Categoría
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                      {{
-                        row.categoriaTurista === "1"
-                          ? "Menor"
-                          : row.categoriaTurista === "2"
-                          ? "Adulto"
-                          : "Jubilado"
-                      }}
-                    </td>
-                  </ng-container>
+                      <!-- Categoría Column -->
+                      <ng-container matColumnDef="categoriaTurista">
+                        <th mat-header-cell *matHeaderCellDef>Categoría</th>
+                        <td mat-cell *matCellDef="let row">
+                          {{
+                            row.categoriaTurista === "1"
+                              ? "Menor"
+                              : row.categoriaTurista === "2"
+                              ? "Adulto"
+                              : "Jubilado"
+                          }}
+                        </td>
+                      </ng-container>
 
-                  <!-- Fecha Column -->
-                  <ng-container matColumnDef="fechaCompra">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Fecha
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                      {{ row.fechaCompra | date: 'dd/MM/yyyy' }}
-                    </td>
-                  </ng-container>
+                      <!-- Fecha Column -->
+                      <ng-container matColumnDef="fechaCompra">
+                        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                        <td mat-cell *matCellDef="let row">
+                          {{ row.fechaCompra | date : "dd/MM/yyyy" }}
+                        </td>
+                      </ng-container>
 
-                  <!-- Precio Base Column -->
-                  <ng-container matColumnDef="precio">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Precio Base
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                      {{ row.precio | currency }}
-                    </td>
-                  </ng-container>
+                      <!-- Precio Base Column -->
+                      <ng-container matColumnDef="precio">
+                        <th mat-header-cell *matHeaderCellDef>Precio Base</th>
+                        <td mat-cell *matCellDef="let row">
+                          {{ row.precio | currency }}
+                        </td>
+                      </ng-container>
 
-                  <!-- Precio Final Column -->
-                  <ng-container matColumnDef="precioFinal">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Precio Final
-                    </th>
-                    <td mat-cell *matCellDef="let row">
-                      {{ row.precioFinal | currency }}
-                    </td>
-                  </ng-container>
+                      <!-- Precio Final Column -->
+                      <ng-container matColumnDef="precioFinal">
+                        <th mat-header-cell *matHeaderCellDef>Precio Final</th>
+                        <td mat-cell *matCellDef="let row">
+                          {{ row.precioFinal | currency }}
+                        </td>
+                      </ng-container>
 
-                  <!--Acciones Column-->
-                  <ng-container matColumnDef="acciones">
-                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
-                    <td mat-cell *matCellDef="let row">
-                      <button
-                        class="btn btn-danger"
-                        type="button"
-                        (click)="eliminarBoleto(row)"
-                      >
-                        Eliminar
-                      </button>
-                    </td>
-                  </ng-container>
+                      <!--Acciones Column-->
+                      <ng-container matColumnDef="acciones">
+                        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                        <td mat-cell *matCellDef="let row">
+                          <button
+                            class="btn btn-danger"
+                            type="button"
+                            (click)="eliminarBoleto(row)"
+                          >
+                            Eliminar
+                          </button>
+                        </td>
+                      </ng-container>
 
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr
-                    mat-row
-                    *matRowDef="let row; columns: displayedColumns"
-                  ></tr>
-                </table>
-
-                <mat-paginator
-                  [pageSizeOptions]="[5, 10, 25, 100]"
-                  aria-label="Seleccionar página"
-                  id="paginator"
-                ></mat-paginator>
+                      <tr
+                        mat-header-row
+                        *matHeaderRowDef="displayedColumns; sticky: true"
+                      ></tr>
+                      <tr
+                        mat-row
+                        *matRowDef="let row; columns: displayedColumns"
+                      ></tr>
+                    </table>
+                    <mat-paginator
+                      [pageSizeOptions]="[5, 10, 20]"
+                      showFirstLastButtons
+                      aria-label="Selecciona la Pagina de Boletos"
+                    >
+                    </mat-paginator>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -102,3 +102,88 @@
 .card-body {
   padding: 24px;
 }
+
+/* Estilos para el paginador */
+.mat-paginator {
+  background-color: white !important; 
+  border-top: 1px solid #dee2e6;
+}
+
+/* Contenedor de la tabla para permitir el scroll horizontal */
+.table-container {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  position: relative;
+}
+
+/* Estilo para la tabla dentro del contenedor */
+.table-container table[mat-table] {
+  min-width: 950px;
+}
+
+/* Asegura que el encabezado fijo funcione dentro del .table-container */
+.mat-header-row {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+/* Define anchos mínimos para las columnas */
+.mat-column-dni { min-width: 100px; }
+.mat-column-email { min-width: 200px; }
+.mat-column-categoriaTurista { min-width: 100px; }
+.mat-column-fechaCompra { min-width: 120px; }
+.mat-column-precio { min-width: 120px; text-align: right; }
+.mat-column-precioFinal { min-width: 120px; text-align: right; }
+.mat-column-acciones { min-width: 110px; text-align: center; }
+
+/* Opcional: Estilos para las celdas */
+td.mat-cell, th.mat-header-cell {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Asegura que el paginador se comporte bien dentro del contenedor */
+.table-container mat-paginator {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.mat-mdc-table {
+  min-width: 800px;
+}
+
+.mat-column-acciones {
+  min-width: 100px;
+}
+
+.mat-column-email {
+  min-width: 200px;
+}
+
+.mat-column-dni {
+  min-width: 100px;
+}
+
+.mat-column-categoriaTurista {
+  min-width: 100px;
+}
+
+.mat-column-fechaCompra {
+  min-width: 100px;
+}
+
+.mat-column-precio,
+.mat-column-precioFinal {
+  min-width: 120px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 800px; /* Ajusta este valor según el contenido de tus columnas */
+}

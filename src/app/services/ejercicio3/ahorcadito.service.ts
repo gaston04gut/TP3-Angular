@@ -54,14 +54,14 @@ export class AhorcaditoService {
     } else {
       this.letrasErradas.push(letra);
       if (this.INTENTOS_MAXIMOS >= 5) {
-        this.imagenUrl = '/assets/img/ahorcadito5.png';
+        this.imagenUrl = 'assets/img/ahorcadito5.png';
         this.INTENTOS_MAXIMOS--;
       } else {
         this.imagenUrl =
-          '/assets/img/ahorcadito' + this.INTENTOS_MAXIMOS + '.png';
+          'assets/img/ahorcadito' + this.INTENTOS_MAXIMOS + '.png';
         this.INTENTOS_MAXIMOS--;
         if (this.INTENTOS_MAXIMOS < 0) {
-          this.imagenUrl = '/assets/img/ahorcadito0.png';
+          this.imagenUrl = 'assets/img/ahorcadito0.png';
           return { estado: 'derrota' };
         }
       }
